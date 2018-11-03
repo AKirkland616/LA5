@@ -20,34 +20,36 @@ String emailA = "";
 			
 			try {
 				reader = new Scanner(new FileReader(new File(filePaths[i])));
+				try {
+					formatName(reader.nextLine());
+				} catch (NameFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				try {
+					formatEmail(reader.nextLine());
+				} catch (EmailAddressFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				try {
+					formatPhoneNumber(reader.nextLine());
+				} catch (PhoneNumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				formatContactInformation(filePaths[i]);
+				nameA = "";
+				emailA = "";
+				number = "";
 			} catch (FileNotFoundException e) {
 				t.handleFileNotFoundException(e);
 			}
 			
-			try {
-				formatName(reader.nextLine());
-			} catch (NameFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			
-			try {
-				formatEmail(reader.nextLine());
-			} catch (EmailAddressFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			
-			try {
-				formatPhoneNumber(reader.nextLine());
-			} catch (PhoneNumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			formatContactInformation(filePaths[i]);
-			nameA = "";
-			emailA = "";
-			number = "";
 		}
 	}
 
@@ -55,8 +57,8 @@ String emailA = "";
 	public void formatContactInformation(String fileName) {
 		// TODO Auto-generated method stub
 		System.out.println(nameA);
-		System.out.println(emailA);
 		System.out.println(number);
+		System.out.println(emailA);
 		
 	}
 

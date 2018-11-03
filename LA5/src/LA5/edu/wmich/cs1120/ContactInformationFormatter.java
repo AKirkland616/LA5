@@ -24,24 +24,22 @@ String emailA = "";
 					formatName(reader.nextLine());
 				} catch (NameFormatException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					t.handleNameFormatException(e);
 				}
 				
 				try {
 					formatPhoneNumber(reader.nextLine());
 				} catch (PhoneNumberFormatException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					t.handlePhoneNumberFormatException(e);
 				}
 				
 				try {
 					formatEmail(reader.nextLine());
 				} catch (EmailAddressFormatException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					t.handleEmailFormatException(e);
 				}
-				
-				
 				formatContactInformation(filePaths[i]);
 				nameA = "";
 				emailA = "";

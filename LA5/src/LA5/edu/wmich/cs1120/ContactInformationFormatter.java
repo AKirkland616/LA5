@@ -120,6 +120,10 @@ String emailA = "";
 		// TODO Auto-generated method stub
 		char[] n = name.toCharArray();
 		for (int i = 0; i < n.length; i++) {
+			try {
+			if(Character.isDigit(n[i])) {
+				throw new NameFormatException();
+			}
 			if (n[i] == ' ') {
 				nameA += n[i];
 			}else if(Character.isLowerCase(n[i])) {
@@ -127,6 +131,9 @@ String emailA = "";
 			}else if (!Character.isLowerCase(n[i])) {
 				nameA += Character.toLowerCase(n[i]);
 			}
+		}catch(NameFormatException e) {
+			t.handleNameFormatException(e);
+		}
 		}
 		String [] a = nameA.split(" ");
 		nameA = "";

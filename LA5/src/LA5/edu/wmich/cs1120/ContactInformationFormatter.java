@@ -28,18 +28,20 @@ String emailA = "";
 				}
 				
 				try {
+					formatPhoneNumber(reader.nextLine());
+				} catch (PhoneNumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				try {
 					formatEmail(reader.nextLine());
 				} catch (EmailAddressFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
-				try {
-					formatPhoneNumber(reader.nextLine());
-				} catch (PhoneNumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				
 				formatContactInformation(filePaths[i]);
 				nameA = "";
 				emailA = "";

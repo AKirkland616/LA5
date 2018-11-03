@@ -7,14 +7,14 @@ public class FormatExceptionHandler implements IFormatExceptionHandler{
 	@Override
 	public void handleFileNotFoundException(FileNotFoundException e) {
 		// TODO Auto-generated method stub
-		System.out.println("Error file not found" );
+		System.out.println(e);
 		
 	}
 
 	@Override
 	public void handlePhoneNumberFormatException(PhoneNumberFormatException e) {
 		// TODO Auto-generated method stub
-		
+			
 	}
 
 	@Override

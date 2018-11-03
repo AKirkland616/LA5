@@ -7,6 +7,7 @@ public class FormatExceptionHandler implements IFormatExceptionHandler{
 	@Override
 	public void handleFileNotFoundException(FileNotFoundException e) {
 		// TODO Auto-generated method stub
+		System.out.println("Error file not found" );
 		
 	}
 

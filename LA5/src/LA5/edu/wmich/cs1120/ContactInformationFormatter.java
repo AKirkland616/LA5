@@ -120,6 +120,7 @@ String emailA = "";
 		// TODO Auto-generated method stub
 		char[] n = name.toCharArray();
 		for (int i = 0; i < n.length; i++) {
+			//retry
 			try {
 			if(Character.isDigit(n[i])) {
 				throw new NameFormatException();

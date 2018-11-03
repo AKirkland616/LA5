@@ -45,6 +45,9 @@ String emailA = "";
 				e.printStackTrace();
 			}
 			formatContactInformation(filePaths[i]);
+			nameA = "";
+			emailA = "";
+			number = "";
 		}
 	}
 

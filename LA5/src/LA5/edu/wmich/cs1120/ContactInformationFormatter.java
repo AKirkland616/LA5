@@ -17,145 +17,108 @@ String emailA = "";
 		// TODO Auto-generated method stub
 		
 		for (int i =0; i< filePaths.length; i++) {
-			
-			try {
-				reader = new Scanner(new FileReader(new File(filePaths[i])));
-				try {
-					formatName(reader.nextLine());
-				} catch (NameFormatException e) {
-					// TODO Auto-generated catch block
-					t.handleNameFormatException(e);
-				}
-				
-				try {
-					formatPhoneNumber(reader.nextLine());
-				} catch (PhoneNumberFormatException e) {
-					// TODO Auto-generated catch block
-					t.handlePhoneNumberFormatException(e);
-				}
-				
-				try {
-					formatEmail(reader.nextLine());
-				} catch (EmailAddressFormatException e) {
-					// TODO Auto-generated catch block
-					t.handleEmailFormatException(e);
-				}
 				formatContactInformation(filePaths[i]);
 				nameA = "";
-				emailA = "";
 				number = "";
-			} catch (FileNotFoundException e) {
-				t.handleFileNotFoundException(e);
-			}
-			
-			
-			
+				emailA = "";
 		}
 	}
 
 	@Override
 	public void formatContactInformation(String fileName) {
 		// TODO Auto-generated method stub
-		System.out.println(nameA);
-		System.out.println(number);
-		System.out.println(emailA);
+		try {
+			reader = new Scanner(new FileReader(new File(fileName)));
+			try {
+				formatName(reader.nextLine());
+			} catch (NameFormatException e) {
+				// TODO Auto-generated catch block
+				t.handleNameFormatException(e);
+			}
+			
+			try {
+				formatPhoneNumber(reader.nextLine());
+			} catch (PhoneNumberFormatException e) {
+				// TODO Auto-generated catch block
+				t.handlePhoneNumberFormatException(e);
+			}
+			
+			try {
+				formatEmail(reader.nextLine());
+			} catch (EmailAddressFormatException e) {
+				// TODO Auto-generated catch block
+				t.handleEmailFormatException(e);
+			} 
+		}catch (FileNotFoundException e) {
+				t.handleFileNotFoundException(e);
+			}
+		
 		
 	}
 
 	@Override
 	public void formatEmail(String email) throws EmailAddressFormatException {
 		// TODO Auto-generated method stub
-		char [] e = email.toCharArray();
-		for(int i = 0; i < e.length; i++) {
-			if(e[i]== '.' || e[i] == '@') {
-				emailA += e[i];
-			}else {
-				if(Character.isLowerCase(e[i])) {
-					emailA += e[i];
-				}else if (!Character.isLowerCase(e[i])) {
-					emailA += Character.toLowerCase(e[i]);
-				}
+		char [] e1 = email.toCharArray();
+		for(int i = 0; i < e1.length; i++) {
+			if(e1[i]== '.' || e1[i] == '@' || Character.isDigit(e1[i]) || Character.isLowerCase(e1[i])) {
+				
+			}else{
+				throw new EmailAddressFormatException(email);
 			}
-			 
 		}
-		
+		emailA = email;
+		if (emailA != "") {
+			System.out.println(emailA);
+		}
 	}
 
 	@Override
 	public void formatPhoneNumber(String phoneNumber) throws PhoneNumberFormatException {
 		// TODO Auto-generated method stub
 		char[] n = phoneNumber.toCharArray();
-		for(int i = 0; i< n.length; i++) {
-			if (n[i] == '-' || n[i] == '(' || n[i] == ')') {
-				
-			}else {
-				number += n[i];
+		for (int i= 0; i < n.length; i++) {
+			if (i == 0 && n[0] != '(') {
+				throw new PhoneNumberFormatException(phoneNumber);
+			}else if (i == 4 && n[4] != ')') {
+				throw new PhoneNumberFormatException(phoneNumber);
+			}else if (i == 5 && n[5] != '-') {
+				throw new PhoneNumberFormatException(phoneNumber);
+			}else if (i == 9 && n[9] != '-') {
+				throw new PhoneNumberFormatException(phoneNumber);
+			}else if (!Character.isDigit(n[i])&& i != 9 && i != 5 && i != 4 && i != 0) {
+				throw new PhoneNumberFormatException(phoneNumber);
 			}
 		}
-		n = number.toCharArray();
-		for(int i = 0; i < n.length; i++) {
-			if (i == 0) {
-				number = "(";
-				number += n[i];
-				
-			}else if (i == 2) {
-				number += n[i];
-				number += ')';
-				number += '-';
-				
-			}else if (i == 5) {
-				number += n[i];
-				number += '-';
-			}else {
-				number += n[i];
-			}
-			
+		number = phoneNumber;
+		if (number != "") {
+			System.out.println(number);
 		}
 		
-		
+	
 	}
 
 	@Override
 	public void formatName(String name) throws NameFormatException {
 		// TODO Auto-generated method stub
-		char[] n = name.toCharArray();
+		String [] a = name.split(" ");
+		char[] n = a[0].toCharArray();
+		char[] na = a[1].toCharArray();
+	
 		for (int i = 0; i < n.length; i++) {
-			try {
-			if(Character.isDigit(n[i])) {
-				throw new NameFormatException();
+			if(Character.isUpperCase(n[i]) && i != 0) {
+				throw new NameFormatException(name);
 			}
-			if (n[i] == ' ') {
-				nameA += n[i];
-			}else if(Character.isLowerCase(n[i])) {
-				nameA += n[i];
-			}else if (!Character.isLowerCase(n[i])) {
-				nameA += Character.toLowerCase(n[i]);
-			}
-		}catch(NameFormatException e) {
-			t.handleNameFormatException(e);
-		}
-		}
-		String [] a = nameA.split(" ");
-		nameA = "";
-		n = a[0].toCharArray();
-		for(int i = 0; i < n.length; i++) {
-			if (i == 0) {
-				nameA += Character.toUpperCase(n[i]);
-			}else {
-				nameA += Character.toLowerCase(n[i]);
-			}
-			
-				}
-		nameA += ' ';
-		n = a[1].toCharArray();
+	}
+		for (int i = 0; i < na.length; i++) {				
+			if(Character.isUpperCase(na[i]) && i != 0) {
+				throw new NameFormatException(name);
+			}			
 		
-		for(int i = 0; i < n.length; i++) {
-			if (i == 0) {
-				nameA += Character.toUpperCase(n[i]);
-			}else {
-				nameA += Character.toLowerCase(n[i]);
-		}
-		
+	}
+	nameA = name;
+	if (nameA != "") {
+		System.out.println(nameA);
 	}
 	}
 }

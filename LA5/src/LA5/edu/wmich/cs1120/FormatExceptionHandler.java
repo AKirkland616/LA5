@@ -7,11 +7,17 @@ public class FormatExceptionHandler implements IFormatExceptionHandler{
 	private String nameA = "";
 	private String number = "";
 	private String emailA = "";
+	/**
+	 * @param e the exception e if the file isn't found
+	 */
 	@Override
 	public void handleFileNotFoundException(FileNotFoundException e) {
 		// TODO Auto-generated method stub
 		System.out.println(e.getMessage());
 	}
+	/**
+	 * @param e if the phone number has an error
+	 */
 	@Override
 	public void handlePhoneNumberFormatException(PhoneNumberFormatException e) {
 		// TODO Auto-generated method stub
@@ -47,6 +53,9 @@ public class FormatExceptionHandler implements IFormatExceptionHandler{
 	}
 
 	@Override
+	/**
+	 * @param e if the email has an exception
+	 */
 	public void handleEmailFormatException(EmailAddressFormatException e) {
 		// TODO Auto-generated method stub
 		emailA="";
@@ -66,6 +75,9 @@ public class FormatExceptionHandler implements IFormatExceptionHandler{
 		System.out.println(emailA);
 	}
 
+	/**
+	 * @param e if the name has an exception 
+	 */
 	@Override
 	public void handleNameFormatException(NameFormatException e) {
 		// TODO Auto-generated method stub

@@ -4,14 +4,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
-
+/**
+ * 
+ * @author Chris Niersbach and Anthony Kirkland
+ *
+ */
 public class ContactInformationFormatter implements IContactInformationFormatter {
 Scanner reader;
 FormatExceptionHandler t = new FormatExceptionHandler();
 String nameA = "";
 String number = "";
 String emailA = "";
-
+	/**
+	 * @param filePaths is a string array that goes through each file and formats the content to the correct format
+	 */
 	@Override
 	public void readContactInformation(String[] filePaths) {
 		// TODO Auto-generated method stub
@@ -23,7 +29,9 @@ String emailA = "";
 				emailA = "";
 		}
 	}
-
+	/**
+	 * @param fileName a parameter for each file
+	 */
 	@Override
 	public void formatContactInformation(String fileName) {
 		// TODO Auto-generated method stub
@@ -55,7 +63,9 @@ String emailA = "";
 		
 		
 	}
-
+	/**
+	 * @param email is the string containing the email address
+	 */
 	@Override
 	public void formatEmail(String email) throws EmailAddressFormatException {
 		// TODO Auto-generated method stub
@@ -72,7 +82,9 @@ String emailA = "";
 			System.out.println(emailA);
 		}
 	}
-
+	/**
+	 * @param phoneNumber is a string containing the phone number
+	 */
 	@Override
 	public void formatPhoneNumber(String phoneNumber) throws PhoneNumberFormatException {
 		// TODO Auto-generated method stub
@@ -97,7 +109,9 @@ String emailA = "";
 		
 	
 	}
-
+	/**
+	 * @param name is the string containing the first and last name in the file
+	 */
 	@Override
 	public void formatName(String name) throws NameFormatException {
 		// TODO Auto-generated method stub
